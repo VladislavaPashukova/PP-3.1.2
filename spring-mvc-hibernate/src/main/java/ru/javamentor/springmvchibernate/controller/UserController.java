@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public String createNewUser(Model model){
+    public String getUserFormForCreate(Model model){
         model.addAttribute("user", new User());
         return "new";
     }
@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}/edit")
-    public String editUser(Model model, @PathVariable("id") Long id){
+    public String getFormForEditUser(Model model, @PathVariable("id") Long id){
         User user = userService.findById(id);
         model.addAttribute("user", user);
         model.addAttribute("user", userService.findById(id));
@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}")
-    public String updateUser(@ModelAttribute("user") User user){
+    public String updateEditUser(@ModelAttribute("user") User user){
         userService.saveUser(user);
         return "redirect:/";
     }
